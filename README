@@ -1,0 +1,7 @@
+This is a xserver-xorg input driver for devices supporting
+Linux Multi-Touch protocol.
+
+Author: Mika Kuoppala <mika.kuoppala at-here nokia.com>
+
+This driver is based on apple touchpad driver by Henrik Rydberg
+
