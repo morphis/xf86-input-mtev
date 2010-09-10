@@ -341,7 +341,7 @@ static InputInfoPtr preinit(InputDriverPtr drv, IDevPtr dev, int flags)
 	InputInfoPtr local = xf86AllocateInput(drv, 0);
 	if (!local)
 		goto error;
-	mt = xcalloc(1, sizeof(struct mtev_mtouch));
+	mt = calloc(1, sizeof(struct mtev_mtouch));
 	if (!mt)
 		goto error;
 
@@ -367,7 +367,7 @@ error:
 
 static void uninit(InputDriverPtr drv, InputInfoPtr local, int flags)
 {
-	xfree(local->private);
+	free(local->private);
 	local->private = NULL;
 	xf86DeleteInput(local, 0);
 }
