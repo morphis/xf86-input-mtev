@@ -28,7 +28,7 @@ OPTS	= -O2 -g -Wall -fpic
 .PHONY: all clean
 .PRECIOUS: obj/%.o
 
-dist: VERSION=$(shell cat debian/changelog | head -n 1 | sed -e 's/.*(\(.*\)).*/\1/g')
+VERSION=$(shell cat debian/changelog | head -n 1 | sed -e 's/.*(\(.*\)).*/\1/g')
 
 all:	$(OBJS) $(TLIB) $(TOBJ)
 # $(TBIN)
@@ -53,7 +53,17 @@ clean:
 	rm -rf bin obj
 
 dist:
-	git archive --format=tar --prefix=mtev-$(VERSION) maemo/$(VERSION)-1 | gzip >mtev-$(VERSION).tar.gz
+	git archive --format=tar --prefix=mtev-$(VERSION) maemo/$(VERSION)-1 | gzip >xf86-input-mtev-$(VERSION).tar.gz
+
+rpm: dist
+	specify xf86-input-mtev.yaml
+	cp xf86-input-mtev-$(VERSION).tar.gz rpm/SOURCES/
+#	rpmbuild -v -bb --clean xf86-input-mtev.spec
+
+# doesnt work :(
+	sudo build --repository http://repo.meego.com/MeeGo/releases/1.0.1/core/repos/ia32/packages --arch i686 xf86-input-mtev.spec
+
+#http://repo.meego.com/MeeGo/releases/1.0.1/core/repos/ia32/os/ --arch i686 xf86-input-mtev.spec
 
 distclean: clean
 	rm -rf debian/*.log debian/files
