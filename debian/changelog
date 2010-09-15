@@ -1,3 +1,15 @@
+xserver-xorg-input-mtev (0.1.10) unstable; urgency=low
+
+  * Dummy version bump to get messed up and released tags in sync :(
+
+ -- Mika Kuoppala <mika.kuoppala@nokia.com>  Wed, 15 Sep 2010 14:22:53 +0300
+
+xserver-xorg-input-mtev (0.1.9) unstable; urgency=low
+
+  * Removed depracated xallocs
+
+ -- Mika Kuoppala <mika.kuoppala@nokia.com>  Wed, 15 Sep 2010 14:17:58 +0300
+
 xserver-xorg-input-mtev (0.1.8) unstable; urgency=low
 
   * Fixes: NB#167575 If kernel driver does't expose minor width,

@@ -28,6 +28,8 @@ OPTS	= -O2 -g -Wall -fpic
 .PHONY: all clean
 .PRECIOUS: obj/%.o
 
+dist: VERSION=$(shell cat debian/changelog | head -n 1 | sed -e 's/.*(\(.*\)).*/\1/g')
+
 all:	$(OBJS) $(TLIB) $(TOBJ)
 # $(TBIN)
 
@@ -49,6 +51,9 @@ obj/%.o: %.cc
 
 clean:
 	rm -rf bin obj
+
+dist:
+	git archive --format=tar --prefix=mtev-$(VERSION) maemo/$(VERSION)-1 | gzip >mtev-$(VERSION).tar.gz
 
 distclean: clean
 	rm -rf debian/*.log debian/files
