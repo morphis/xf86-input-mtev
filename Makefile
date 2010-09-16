@@ -55,7 +55,7 @@ clean:
 spec: xf86-input-mtev.yaml
 	specify xf86-input-mtev.yaml
 
-dist: spec
+dist:
 	git archive --format=tar --prefix=xf86-input-mtev-$(VERSION)/ maemo/$(VERSION)-1 | gzip >xf86-input-mtev-$(VERSION).tar.gz
 
 rpm: dist
@@ -63,7 +63,7 @@ rpm: dist
 #	rpmbuild -v -bb --clean xf86-input-mtev.spec
 
 # doesnt work :(
-	sudo build --repository http://repo.meego.com/MeeGo/releases/1.0.1/core/repos/ia32/packages --arch i686 xf86-input-mtev.spec
+#	sudo build --repository http://repo.meego.com/MeeGo/releases/1.0.1/core/repos/ia32/packages --arch i686 xf86-input-mtev.spec
 
 #http://repo.meego.com/MeeGo/releases/1.0.1/core/repos/ia32/os/ --arch i686 xf86-input-mtev.spec
 

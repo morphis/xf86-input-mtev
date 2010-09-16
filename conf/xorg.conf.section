@@ -1,0 +1,6 @@
+Section "InputClass"
+        Identifier              "internal-touchscreen"
+        MatchIsTouchScreen      "on"
+        Driver                  "mtev"
+        Option                  "Ignore"                "off"
+EndSection

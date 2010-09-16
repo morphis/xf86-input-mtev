@@ -24,4 +24,4 @@ PkgConfigBR:
 Configure: none
 
 Files:
-    - "%{_bindir}/*"
+    - /usr/lib/xorg/modules/input/mtev.so
