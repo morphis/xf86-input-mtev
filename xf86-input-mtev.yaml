@@ -13,11 +13,13 @@ Sources:
     - "%{name}-%{version}.tar.gz"
 
 PkgConfigBR:
-    - xserver-xorg-dev
-    - libxi-dev
-    - x11proto-core-dev
-    - x11proto-input-dev
-    - xutils-dev
+    - xorg-server
+    - xkbfile
+    - xproto
+    - inputproto
+    - xrandr
+    - randrproto
+    - xextproto
 
 Configure: none
 

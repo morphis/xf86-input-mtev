@@ -52,12 +52,14 @@ obj/%.o: %.cc
 clean:
 	rm -rf bin obj
 
-dist:
-	git archive --format=tar --prefix=mtev-$(VERSION) maemo/$(VERSION)-1 | gzip >xf86-input-mtev-$(VERSION).tar.gz
+spec: xf86-input-mtev.yaml
+	specify xf86-input-mtev.yaml
+
+dist: spec
+	git archive --format=tar --prefix=xf86-input-mtev-$(VERSION)/ maemo/$(VERSION)-1 | gzip >xf86-input-mtev-$(VERSION).tar.gz
 
 rpm: dist
-	specify xf86-input-mtev.yaml
-	cp xf86-input-mtev-$(VERSION).tar.gz rpm/SOURCES/
+#	cp xf86-input-mtev-$(VERSION).tar.gz rpm/SOURCES/
 #	rpmbuild -v -bb --clean xf86-input-mtev.spec
 
 # doesnt work :(
