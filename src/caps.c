@@ -60,14 +60,21 @@ int caps_read(struct mtev_caps *caps, int fd)
 	memset(caps, 0, sizeof(struct mtev_caps));
 
 	SYSCALL(rc = ioctl(fd, EVIOCGBIT(EV_SYN, sizeof(evbits)), evbits));
-	if (rc < 0)
+	if (rc < 0) {
+		xf86Msg(X_ERROR, "mtev: EV_SYN needed but missing\n");
 		return rc;
+	}
+
 	SYSCALL(rc = ioctl(fd, EVIOCGBIT(EV_KEY, sizeof(keybits)), keybits));
-	if (rc < 0)
+	if (rc < 0) {
+		xf86Msg(X_ERROR, "mtev: EV_KEY needed but missing\n");
 		return rc;
+	}
 	SYSCALL(rc = ioctl(fd, EVIOCGBIT(EV_ABS, sizeof(absbits)), absbits));
-	if (rc < 0)
+	if (rc < 0) {
+		xf86Msg(X_ERROR, "mtev: EV_ABS needed but missing\n");
 		return rc;
+	}
 
 	caps->has_left = getbit(keybits, BTN_LEFT);
 	caps->has_middle = getbit(keybits, BTN_MIDDLE);
