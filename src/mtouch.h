@@ -62,6 +62,10 @@ struct mtev_mtouch {
 
 	struct mtev_hw_state hw_state;
 	struct mtev_caps caps;
+
+	bool invert_x;
+	bool invert_y;
+	bool swap_xy;
 };
 
 int mtouch_configure(struct mtev_mtouch *mt, int fd);

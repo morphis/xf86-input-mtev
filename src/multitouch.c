@@ -269,8 +269,28 @@ static void process_state(LocalDevicePtr local,
 		// We don't do remapping of tracking id's so
 		// make sure clients don't see too high tracking_id numbers
 		if (tp->tracking_id < MT_NUM_FINGERS) {
-			valuators[valix++] = tp->position_x;
-			valuators[valix++] = tp->position_y;
+			int x;
+			int y;
+
+			x = tp->position_x;
+			y = tp->position_y;
+
+			if (mt->invert_x)
+				x = mt->caps.abs_position_x.maximum - x +
+					mt->caps.abs_position_x.minimum;
+
+			if (mt->invert_y)
+				y = mt->caps.abs_position_y.maximum - y
+					+ mt->caps.abs_position_y.minimum;
+
+			if (mt->swap_xy) {
+				int tmp = y;
+				y = x;
+				x = tmp;
+			}
+
+			valuators[valix++] = x;
+			valuators[valix++] = y;
 			valuators[valix++] = tp->touch_major;
 
 			if (mt->caps.has_touch_minor)
@@ -358,6 +378,11 @@ static InputInfoPtr preinit(InputDriverPtr drv, IDevPtr dev, int flags)
 	xf86CollectInputOptions(local, NULL, NULL);
 	//xf86OptionListReport(local->options);
 	xf86ProcessCommonOptions(local, local->options);
+
+
+	mt->swap_xy = xf86SetBoolOption(local->options, "SwapAxes", FALSE);
+	mt->invert_x = xf86SetBoolOption(local->options, "InvertX", FALSE);
+	mt->invert_y = xf86SetBoolOption(local->options, "InvertY", FALSE);
 
 	local->flags |= XI86_CONFIGURED;
 
