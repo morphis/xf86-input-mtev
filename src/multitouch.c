@@ -284,7 +284,7 @@ static void process_state(LocalDevicePtr local,
 					+ mt->caps.abs_position_y.minimum;
 
 			if (mt->swap_xy) {
-				int tmp = y;
+				const int tmp = y;
 				y = x;
 				x = tmp;
 			}
@@ -415,7 +415,7 @@ static XF86ModuleVersionInfo VERSION = {
 	.xf86version = XORG_VERSION_CURRENT,
 	.majorversion = 0,
 	.minorversion = 1,
-	.patchlevel = 10,
+	.patchlevel = 11,
 	.abiclass = ABI_CLASS_XINPUT,
 	.abiversion = ABI_XINPUT_VERSION,
 	.moduleclass = MOD_CLASS_XINPUT,
