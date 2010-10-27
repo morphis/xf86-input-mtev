@@ -308,18 +308,17 @@ static void process_state(LocalDevicePtr local,
 			break;
 	}
 
-	if(down && pdown == 0) {
+	/* Some x-clients assume they get motion events before button down */
+	if (down)
+		xf86PostMotionEventP(local->dev, TRUE,
+				     0, down * MT_AXIS_PER_FINGER, valuators);
+
+	if(down && pdown == 0)
 		xf86PostButtonEventP(local->dev, TRUE,
 				     1, 1,
 				     0, down * MT_AXIS_PER_FINGER, valuators);
-	} else if (pdown && down) {
-		xf86PostMotionEventP(local->dev, TRUE,
-				     0, down * MT_AXIS_PER_FINGER, valuators);
-	} else if (down == 0 && pdown) {
-		xf86PostButtonEventP(local->dev, TRUE,
-				     1, 0,
-				     0, down * MT_AXIS_PER_FINGER, valuators);
-	}
+	else if (down == 0 && pdown)
+		xf86PostButtonEvent(local->dev, TRUE, 1, 0, 0, 0);
 
 	pdown = !!down;
 }
