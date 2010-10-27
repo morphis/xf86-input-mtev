@@ -7,7 +7,7 @@
 
 Name:       xf86-input-mtev
 Summary:    Multitouch input driver for Xserver
-Version:    0.1.11
+Version:    0.1.12
 Release:    1
 Group:      System/X Hardware Support
 License:    GPLv2
@@ -66,7 +66,9 @@ rm -rf %{buildroot}
 # << files
 
 %changelog
- * Thu Sep 16 2010 Mika Kuoppala <mika.kuoppala@nokia.com> 0.1.11
+ * Wed Oct 27 2010 Mika Kuoppala <mika.kuoppala@nokia.com> 0.1.12
+ -  Send motion events before button down
+ * Tue Oct 26 2010 Mika Kuoppala <mika.kuoppala@nokia.com> 0.1.11
  - Added orientation config options: SwapAxes, InvertX, InvertY
  * Thu Sep 16 2010 Mika Kuoppala <mika.kuoppala@nokia.com> 0.1.10
  - First rpm release

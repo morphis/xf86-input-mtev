@@ -1,6 +1,6 @@
 Name: xf86-input-mtev
 Summary: Multitouch input driver for Xserver
-Version: 0.1.11
+Version: 0.1.12
 Release: 1
 Group: System/X Hardware Support
 License: GPLv2

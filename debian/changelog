@@ -1,3 +1,9 @@
+xserver-xorg-input-mtev (0.1.12) unstable; urgency=low
+
+  * Send motion events before button down
+
+ -- Mika Kuoppala <mika.kuoppala@nokia.com>  Wed, 27 Oct 2010 13:40:02 +0300
+
 xserver-xorg-input-mtev (0.1.11) unstable; urgency=low
 
   * Added orientation config options: SwapAxes, InvertX, InvertY.
