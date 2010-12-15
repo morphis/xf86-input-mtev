@@ -56,7 +56,7 @@ spec: xf86-input-mtev.yaml
 	specify xf86-input-mtev.yaml
 
 dist:
-	git archive --format=tar --prefix=xf86-input-mtev-$(VERSION)/ master | gzip >xf86-input-mtev-$(VERSION).tar.gz
+	git archive --format=tar --prefix=xf86-input-mtev-$(VERSION)/ HEAD | gzip >xf86-input-mtev-$(VERSION).tar.gz
 
 rpm: dist
 #	cp xf86-input-mtev-$(VERSION).tar.gz rpm/SOURCES/
