@@ -66,6 +66,12 @@ struct mtev_mtouch {
 	bool invert_x;
 	bool invert_y;
 	bool swap_xy;
+
+	int min_x;
+	int max_x;
+
+	int min_y;
+	int max_y;
 };
 
 int mtouch_configure(struct mtev_mtouch *mt, int fd);

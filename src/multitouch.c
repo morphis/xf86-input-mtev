@@ -176,10 +176,24 @@ static int device_init(DeviceIntPtr dev, LocalDevicePtr local)
 			case 0:
 				min = mt->caps.abs_position_x.minimum;
 				max = mt->caps.abs_position_x.maximum;
+				if (mt->swap_xy) {
+					mt->min_y = min;
+					mt->max_y = max;
+				} else {
+					mt->min_x = min;
+					mt->max_x = max;
+				}
 				break;
 			case 1:
 				min = mt->caps.abs_position_y.minimum;
 				max = mt->caps.abs_position_y.maximum;
+				if (mt->swap_xy) {
+					mt->min_x = min;
+					mt->max_x = max;
+				} else {
+					mt->min_y = min;
+					mt->max_y = max;
+				}
 				break;
 			case 2:
 				min = mt->caps.abs_touch_major.minimum;
@@ -275,19 +289,17 @@ static void process_state(LocalDevicePtr local,
 			x = tp->position_x;
 			y = tp->position_y;
 
-			if (mt->invert_x)
-				x = mt->caps.abs_position_x.maximum - x +
-					mt->caps.abs_position_x.minimum;
-
-			if (mt->invert_y)
-				y = mt->caps.abs_position_y.maximum - y
-					+ mt->caps.abs_position_y.minimum;
-
 			if (mt->swap_xy) {
 				const int tmp = y;
 				y = x;
 				x = tmp;
 			}
+
+			if (mt->invert_x)
+				x = mt->max_x - x + mt->min_x;
+
+			if (mt->invert_y)
+				y = mt->max_y - y + mt->min_y;
 
 			valuators[valix++] = x;
 			valuators[valix++] = y;
