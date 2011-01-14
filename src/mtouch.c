@@ -40,6 +40,7 @@ int mtouch_open(struct mtev_mtouch *mt, int fd)
 {
 	memset(&mt->ev, 0, sizeof(mt->ev));
 	mt->num_events = 0;
+	mt->num_events_read = 0;
 	hw_init(&mt->hw_state);
 	return 0;
 }
@@ -48,6 +49,7 @@ int mtouch_close(struct mtev_mtouch *mt, int fd)
 {
 	memset(&mt->ev, 0, sizeof(mt->ev));
 	mt->num_events = 0;
+	mt->num_events_read = 0;
 	hw_init(&mt->hw_state);
 	return 0;
 }
