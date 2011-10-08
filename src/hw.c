@@ -42,7 +42,9 @@ bool hw_read(struct mtev_hw_state *hw, const struct input_event* ev)
 			hw->num_read = 0;
 			return 1;
 		case SYN_MT_REPORT:
-			if (hw->num_read < HW_MAX_CONTACTS) {
+			if (hw->num_read < HW_MAX_CONTACTS &&
+				hw->num_abs_read > 0 &&
+				hw->contact[hw->num_read].touch_major > 0) {
 				hw->num_read++;
 			}
 			break;
@@ -80,6 +82,7 @@ bool hw_read(struct mtev_hw_state *hw, const struct input_event* ev)
 			hw->contact[hw->num_read].tracking_id = ev->value;
 			break;
 		}
+		hw->num_abs_read++;
 	}
 
 	return 0;

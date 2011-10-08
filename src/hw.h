@@ -43,6 +43,7 @@ struct mtev_hw_state {
 	struct mtev_touch_point contact[HW_MAX_CONTACTS];
 	int num_contacts;
 	int num_read;
+	int num_abs_read;
 };
 
 void hw_init(struct mtev_hw_state *hw);
