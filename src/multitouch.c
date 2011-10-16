@@ -321,7 +321,6 @@ static void process_state(InputInfoPtr local,
 	}
 
 	/* Some x-clients assume they get motion events before button down */
-	xf86Msg(X_INFO,"down %d|pdown %d\n", down, pdown);
 	if (down)
 		xf86PostMotionEventP(local->dev, TRUE, 0, down * MT_AXIS_PER_FINGER, valuators);
 	if(down && pdown == 0)
