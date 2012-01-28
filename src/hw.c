@@ -40,6 +40,7 @@ bool hw_read(struct mtev_hw_state *hw, const struct input_event* ev)
 		case SYN_REPORT:
 			hw->num_contacts = hw->num_read;
 			hw->num_read = 0;
+			hw->num_abs_read = 0;
 			return 1;
 		case SYN_MT_REPORT:
 			if (hw->num_read < HW_MAX_CONTACTS &&
